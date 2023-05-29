@@ -21,10 +21,17 @@ namespace FreeGamesTool.Model
         public string Platform { get; set; }
         public string Publisher { get; set; }
         public string Developer { get; set; }
-        public DateTime ReleaseDate { get; set; }
+        public string ReleaseDate { get; set; }
         public string FreeToGameProfileUrl { get; set; }
         public SystemRequirements MinimumSystemRequirements { get; set; }
         public List<Screenshot> Screenshots { get; set; }
+
+        public Game(int ID)
+        {
+            Id = ID;
+            Title = "GAME NOT FOUND";
+            Screenshots = new List<Screenshot>();
+        }
     }
 
     public class SystemRequirements

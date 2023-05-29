@@ -8,6 +8,7 @@ using System.Threading.Tasks;
 using Newtonsoft.Json;
 using System.Globalization;
 using System.Threading;
+using System.Net;
 
 namespace FreeGamesTool.Repository
 {
@@ -25,8 +26,16 @@ namespace FreeGamesTool.Repository
             //Get the data from the website
             string apiUrl = $"https://www.freetogame.com/api/game?id={gameId}";
 
-            HttpResponseMessage response = await _httpClient.GetAsync(apiUrl);
-            response.EnsureSuccessStatusCode();
+            HttpResponseMessage response;
+            try
+            {
+                response = await _httpClient.GetAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                return null;
+            }
 
             string jsonResponse = await response.Content.ReadAsStringAsync();
 

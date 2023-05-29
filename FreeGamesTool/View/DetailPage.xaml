@@ -20,6 +20,7 @@
         <converters:UrlToImageConverter x:Key="UrlToImageConverter" />
     </Page.Resources>
 
+    <!-- Main grid -->
     <Grid Background="#16161D">
         <Grid.RowDefinitions>
             <RowDefinition Height="2*"/>
@@ -31,6 +32,35 @@
             <ColumnDefinition Width="2*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
+
+
+        <!-- Game ID Changer -->
+        <Grid Grid.Row="0" Grid.Column="1" Margin="150,0,150,270" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="Auto"/>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="Auto"/>
+            </Grid.ColumnDefinitions>
+
+            <!-- Left Button -->
+            <Button Grid.Column="0" Content="◄" FontSize="16" Command="{Binding PreviousGameCommand}" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+
+            <!-- ID -->
+            <TextBlock Text="{Binding CurrentGame.Id, StringFormat='ID: {0}'}"
+                       FontSize ="20"
+                       Grid.Column ="1"
+                       Grid.Row ="0"
+                       Foreground="Azure"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Center"/>
+
+            <!-- Right Button -->
+            <Button Grid.Column="2" Content="►" FontSize="16" Command="{Binding NextGameCommand}" 
+                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+        </Grid>
+
+
 
         <!-- Thumbnail image -->
         <Image Source="{Binding CurrentGame.Thumbnail, Converter={StaticResource UrlToImageConverter}}"
@@ -63,7 +93,7 @@
                        Foreground="Azure"
                        Margin="0,0,0,10"/>
 
-            <TextBlock Text="{Binding CurrentGame.ReleaseDate,  StringFormat='Released on {0}'}"
+            <TextBlock Text="{Binding CurrentGame.ReleaseDate, StringFormat='Released on {0}'}"
                        FontSize="16"
                        Foreground="Azure"
                        Margin="0,0,0,10"/>
@@ -84,7 +114,7 @@
                    Grid.Row="1"
                    Grid.ColumnSpan="2"
                    Margin="20"
-                   FontSize="14"
+                   FontSize="12"
                    Foreground="Azure"
                    TextWrapping="Wrap"/>
 

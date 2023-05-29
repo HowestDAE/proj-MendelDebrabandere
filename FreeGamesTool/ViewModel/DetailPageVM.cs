@@ -14,6 +14,7 @@ namespace FreeGamesTool.ViewModel
 {
     public class DetailPageVM : ObservableObject
     {
+        //GAME
         private Game _currentGame;
         public Game CurrentGame
         {
@@ -21,32 +22,44 @@ namespace FreeGamesTool.ViewModel
             set { SetProperty(ref _currentGame, value); }
         }
 
+        //GAME ID CHANGER
+        private int _currentGameId;
+        public int CurrentGameId
+        {
+            get { return _currentGameId; }
+            set { SetProperty(ref _currentGameId, value); }
+        }
+        public ICommand PreviousGameCommand { get; }
+        public ICommand NextGameCommand { get; }
+        //**********************************
+
+        //GAME SCREENSHOT CHANGER
         private List<Screenshot> _screenshots;
         public List<Screenshot> Screenshots
         {
             get { return _screenshots; }
             set { SetProperty(ref _screenshots, value); }
         }
-
         private Screenshot _currentScreenshot;
         public Screenshot CurrentScreenshot
         {
             get { return _currentScreenshot; }
             set { SetProperty(ref _currentScreenshot, value); }
         }
-
         private int _currentScreenshotIndex;
         public int CurrentScreenshotIndex
         {
             get { return _currentScreenshotIndex; }
             set { SetProperty(ref _currentScreenshotIndex, value); }
         }
-
         public ICommand PreviousScreenshotCommand { get; }
         public ICommand NextScreenshotCommand { get; }
+        //**********************************
 
+        //Repo
         private GameRepository _repository;
 
+        //Constructor
         public DetailPageVM()
         {
             _repository = new GameRepository();
@@ -55,19 +68,32 @@ namespace FreeGamesTool.ViewModel
             PreviousScreenshotCommand = new RelayCommand(PreviousScreenshot);
             NextScreenshotCommand = new RelayCommand(NextScreenshot);
 
+            PreviousGameCommand = new RelayCommand(PreviousGame);
+            NextGameCommand = new RelayCommand(NextGame);
+
+            CurrentGameId = 325;
+
             // Load the game data and screenshots
             //GetGameData(452);
-            GetGameData(200);
+            GetGameData(CurrentGameId);
         }
 
+        //Async data loader
         private async void GetGameData(int gameId)
         {
             CurrentGame = await _repository.GetGameById(gameId);
+            //If the game isnt found, create an empty game class to display that its not found
+            if (CurrentGame == null)
+            {
+                CurrentGame = new Game(CurrentGameId);
+            }
+
             Screenshots = CurrentGame.Screenshots;
             CurrentScreenshotIndex = 0;
             UpdateScreenshot();
         }
 
+        //Screenshot changer commands
         private void PreviousScreenshot()
         {
             CurrentScreenshotIndex--;
@@ -75,7 +101,6 @@ namespace FreeGamesTool.ViewModel
                 CurrentScreenshotIndex = Screenshots.Count - 1;
             UpdateScreenshot();
         }
-
         private void NextScreenshot()
         {
             CurrentScreenshotIndex++;
@@ -83,13 +108,34 @@ namespace FreeGamesTool.ViewModel
                 CurrentScreenshotIndex = 0;
             UpdateScreenshot();
         }
-
         private void UpdateScreenshot()
         {
             if (Screenshots.Count > 0)
             {
                 CurrentScreenshot = Screenshots[_currentScreenshotIndex];
             }
+            else
+            {
+                CurrentScreenshot = null;
+            }
         }
+        //****************************************
+
+        //Game Id changers
+        private void PreviousGame()
+        {
+            CurrentGameId--;
+            if (CurrentGameId < 0)
+                CurrentGameId = 552;
+            GetGameData(CurrentGameId);
+        }
+        private void NextGame()
+        {
+            CurrentGameId++;
+            if (CurrentGameId > 552)
+                CurrentGameId = 0;
+            GetGameData(CurrentGameId);
+        }
+        //****************************************
     }
 }
