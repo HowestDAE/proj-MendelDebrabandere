@@ -101,11 +101,6 @@
                        Foreground="Azure"
                        Margin="0,0,0,10"/>
 
-            <TextBlock Text="{Binding CurrentGame.ReleaseDate, StringFormat='Released on {0}'}"
-                       FontSize="16"
-                       Foreground="Azure"
-                       Margin="0,0,0,10"/>
-
             <TextBlock Text="{Binding CurrentGame.Platform, StringFormat='Platform: {0}'}"
                        FontSize="16"
                        Foreground="Azure"
@@ -148,38 +143,44 @@
         </Grid>
 
         <!-- System requirements stackpanel -->
-        <StackPanel Grid.Row="0" Grid.Column="2" Margin="20" Orientation="Vertical">
+        <StackPanel Grid.Row="0" Grid.Column="2" Margin="25" Orientation="Vertical">
 
             <TextBlock Text="System Requirements"
                        Foreground="Azure"
                        FontSize="18"
                        Margin="0,0,0,10"
-                       FontWeight="Bold" />
+                       FontWeight="Bold"
+                       TextWrapping="Wrap"/>
 
-            <TextBlock Text="{Binding CurrentGame.MinimumSystemRequirements.OS, StringFormat='OS: {0}'}"
+            <TextBlock Text="{Binding CurrentGame.Minimum_System_Requirements.OS, StringFormat='OS: {0}'}"
                        Foreground="Azure" 
                        FontSize="14"
-                       Margin="0,0,0,5" />
+                       Margin="0,0,0,0" 
+                       TextWrapping="Wrap"/>
 
-            <TextBlock Text="{Binding CurrentGame.MinimumSystemRequirements.Processor, StringFormat='Processor: {0}'}" 
+            <TextBlock Text="{Binding CurrentGame.Minimum_System_Requirements.Processor, StringFormat='Processor: {0}'}" 
                        Foreground="Azure" 
                        FontSize="14" 
-                       Margin="0,0,0,5" />
+                       Margin="0,0,0,0" 
+                       TextWrapping="Wrap"/>
 
-            <TextBlock Text="{Binding CurrentGame.MinimumSystemRequirements.Memory, StringFormat='Memory: {0}'}" 
+            <TextBlock Text="{Binding CurrentGame.Minimum_System_Requirements.Memory, StringFormat='Memory: {0}'}" 
                        Foreground="Azure" 
                        FontSize="14" 
-                       Margin="0,0,0,5" />
+                       Margin="0,0,0,0" 
+                       TextWrapping="Wrap"/>
 
-            <TextBlock Text="{Binding CurrentGame.MinimumSystemRequirements.Graphics, StringFormat='Graphics: {0}'}" 
+            <TextBlock Text="{Binding CurrentGame.Minimum_System_Requirements.Graphics, StringFormat='Graphics: {0}'}" 
                        Foreground="Azure" 
                        FontSize="14" 
-                       Margin="0,0,0,5" />
+                       Margin="0,0,0,0" 
+                       TextWrapping="Wrap"/>
 
-            <TextBlock Text="{Binding CurrentGame.MinimumSystemRequirements.Storage, StringFormat='Storage: {0}'}"
+            <TextBlock Text="{Binding CurrentGame.Minimum_System_Requirements.Storage, StringFormat='Storage: {0}'}"
                        Foreground="Azure"
                        FontSize="14" 
-                       Margin="0,0,0,5" />
+                       Margin="0,0,0,0"
+                       TextWrapping="Wrap"/>
 
         </StackPanel>
 

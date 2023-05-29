@@ -73,7 +73,7 @@ namespace FreeGamesTool.ViewModel
 
             ViewOverviewCommand = new RelayCommand(NavigateToOverview);
 
-            CurrentGameId = 325;
+            CurrentGameId = 0;
             GetGameData();
         }
 

@@ -15,7 +15,26 @@
     </Page.DataContext>
 
     <Grid Background="#16161D">
-        <ScrollViewer VerticalScrollBarVisibility="Auto">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
+            <TextBlock Text="Genre:" Margin="0,0,5,0" VerticalAlignment="Center" />
+            <ComboBox ItemsSource="{Binding Genres}"
+                      SelectedItem="{Binding SelectedGenre}"
+                      Margin="0,0,10,0" />
+            <TextBlock Text="Platform:" Margin="0,0,5,0" VerticalAlignment="Center" />
+            <ComboBox ItemsSource="{Binding Platforms}"
+                      SelectedItem="{Binding SelectedPlatform}"
+                      Margin="0,0,10,0" />
+            <Button Content="Apply Filters" Command="{Binding ApplyFiltersCommand}" />
+        </StackPanel>
+
+
+
+        <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
             <ItemsControl ItemsSource="{Binding Games}" Margin="20">
                 <ItemsControl.ItemsPanel>
                     <ItemsPanelTemplate>
