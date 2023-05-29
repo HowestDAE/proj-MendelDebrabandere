@@ -43,5 +43,26 @@ namespace FreeGamesTool.Repository
 
             return game;
         }
+
+        public async Task<List<Game>> GetAllGames()
+        {
+            string apiUrl = "https://www.freetogame.com/api/games";
+
+            HttpResponseMessage response;
+            try
+            {
+                response = await _httpClient.GetAsync(apiUrl);
+                response.EnsureSuccessStatusCode();
+            }
+            catch (HttpRequestException ex)
+            {
+                return null;
+            }
+
+            string jsonResponse = await response.Content.ReadAsStringAsync();
+            List<Game> games = JsonConvert.DeserializeObject<List<Game>>(jsonResponse);
+
+            return games;
+        }
     }
 }

@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Controls;
 using CommunityToolkit.Mvvm.ComponentModel;
+using FreeGamesTool.Model;
 using FreeGamesTool.View;
 
 namespace FreeGamesTool.ViewModel
@@ -15,21 +16,28 @@ namespace FreeGamesTool.ViewModel
         public MainViewModel()
         {
             GamePage = new DetailPage();
-            CurrentPage = GamePage;
+            OverviewPage = new OverviewPage();
+            CurrentPage = OverviewPage;
         }
 
         public DetailPage GamePage { get; set; }
+
+        public OverviewPage OverviewPage { get; set; }
 
         private Page _currentPage;
 
         public Page CurrentPage
         {
             get { return _currentPage; }
-            set
-            {
-                _currentPage = value;
-                OnPropertyChanged(nameof(CurrentPage));
-            }
+            set { SetProperty(ref _currentPage, value); }
+        }
+
+        public async void NavigateToGameDetail(int ID)
+        {
+            (GamePage.DataContext as DetailPageVM).CurrentGameId = ID;
+            (GamePage.DataContext as DetailPageVM).GetGameData();
+
+            CurrentPage = GamePage;
         }
     }
 }

@@ -72,16 +72,13 @@ namespace FreeGamesTool.ViewModel
             NextGameCommand = new RelayCommand(NextGame);
 
             CurrentGameId = 325;
-
-            // Load the game data and screenshots
-            //GetGameData(452);
-            GetGameData(CurrentGameId);
+            GetGameData();
         }
 
         //Async data loader
-        private async void GetGameData(int gameId)
+        public async void GetGameData()
         {
-            CurrentGame = await _repository.GetGameById(gameId);
+            CurrentGame = await _repository.GetGameById(CurrentGameId);
             //If the game isnt found, create an empty game class to display that its not found
             if (CurrentGame == null)
             {
@@ -125,16 +122,16 @@ namespace FreeGamesTool.ViewModel
         private void PreviousGame()
         {
             CurrentGameId--;
-            if (CurrentGameId < 0)
+            if (CurrentGameId < 1)
                 CurrentGameId = 552;
-            GetGameData(CurrentGameId);
+            GetGameData();
         }
         private void NextGame()
         {
             CurrentGameId++;
             if (CurrentGameId > 552)
-                CurrentGameId = 0;
-            GetGameData(CurrentGameId);
+                CurrentGameId = 1;
+            GetGameData();
         }
         //****************************************
     }
