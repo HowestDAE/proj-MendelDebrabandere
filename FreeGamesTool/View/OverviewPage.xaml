@@ -21,11 +21,11 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Row="0" Orientation="Horizontal" Margin="10">
-            <TextBlock Text="Genre:" Margin="0,0,5,0" VerticalAlignment="Center" />
+            <TextBlock Text="Genre:" Margin="0,0,5,0" VerticalAlignment="Center" Foreground="Azure" />
             <ComboBox ItemsSource="{Binding Genres}"
                       SelectedItem="{Binding SelectedGenre}"
                       Margin="0,0,10,0" />
-            <TextBlock Text="Platform:" Margin="0,0,5,0" VerticalAlignment="Center" />
+            <TextBlock Text="Platform:" Margin="0,0,5,0" VerticalAlignment="Center" Foreground="Azure" />
             <ComboBox ItemsSource="{Binding Platforms}"
                       SelectedItem="{Binding SelectedPlatform}"
                       Margin="0,0,10,0" />

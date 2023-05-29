@@ -12,6 +12,7 @@
       Title="DetailPage">
 
 
+
     <Page.DataContext>
         <viewModel:DetailPageVM/>
     </Page.DataContext>

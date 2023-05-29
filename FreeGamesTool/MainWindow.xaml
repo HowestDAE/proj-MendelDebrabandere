@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:FreeGamesTool"
         xmlns:viewModel="clr-namespace:FreeGamesTool.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" Height="675" Width="1200">
+        Title="FreeGamesTool" Height="675" Width="1200" ResizeMode="NoResize">
 
     <Window.DataContext>
         <viewModel:MainViewModel />
