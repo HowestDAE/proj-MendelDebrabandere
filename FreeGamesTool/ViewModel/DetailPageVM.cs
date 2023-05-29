@@ -71,6 +71,8 @@ namespace FreeGamesTool.ViewModel
             PreviousGameCommand = new RelayCommand(PreviousGame);
             NextGameCommand = new RelayCommand(NextGame);
 
+            ViewOverviewCommand = new RelayCommand(NavigateToOverview);
+
             CurrentGameId = 325;
             GetGameData();
         }
@@ -134,5 +136,14 @@ namespace FreeGamesTool.ViewModel
             GetGameData();
         }
         //****************************************
+
+        // Go to overview button command
+        public ICommand ViewOverviewCommand { get; }
+        private void NavigateToOverview()
+        {
+            // Access the instance of the MainViewModel and invoke NavigateToGameDetail
+            MainViewModel mainViewModel = (MainViewModel)App.Current.MainWindow.DataContext;
+            mainViewModel.NavigateToOverview();
+        }
     }
 }

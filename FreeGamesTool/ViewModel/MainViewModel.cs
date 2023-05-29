@@ -32,12 +32,17 @@ namespace FreeGamesTool.ViewModel
             set { SetProperty(ref _currentPage, value); }
         }
 
-        public async void NavigateToGameDetail(int ID)
+        public void NavigateToGameDetail(int ID)
         {
             (GamePage.DataContext as DetailPageVM).CurrentGameId = ID;
             (GamePage.DataContext as DetailPageVM).GetGameData();
 
             CurrentPage = GamePage;
+        }
+
+        public void NavigateToOverview()
+        {
+            CurrentPage = OverviewPage;
         }
     }
 }

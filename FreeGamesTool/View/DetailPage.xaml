@@ -34,40 +34,48 @@
         </Grid.ColumnDefinitions>
 
 
-        <!-- Game ID Changer -->
-        <Grid Grid.Row="0" Grid.Column="1" Margin="150,0,150,270" >
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="Auto"/>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="Auto"/>
-            </Grid.ColumnDefinitions>
+        <!-- DATASTACKPANEL -->
+        <StackPanel Grid.Row="0"
+                    Grid.Column="1"
+                    Orientation="Vertical"
+                    Margin="10">
 
-            <!-- Left Button -->
-            <Button Grid.Column="0" Content="◄" FontSize="16" Command="{Binding PreviousGameCommand}" 
-                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            <!-- Game ID Changer -->
+            <Grid Margin="150,0,150,0" >
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="Auto"/>
+                </Grid.ColumnDefinitions>
 
-            <!-- ID -->
-            <TextBlock Text="{Binding CurrentGame.Id, StringFormat='ID: {0}'}"
-                       FontSize ="20"
-                       Grid.Column ="1"
-                       Grid.Row ="0"
-                       Foreground="Azure"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Center"/>
+                <!-- Left Button -->
+                <Button Grid.Column="0" Content="◄" FontSize="16" Command="{Binding PreviousGameCommand}" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
 
-            <!-- Right Button -->
-            <Button Grid.Column="2" Content="►" FontSize="16" Command="{Binding NextGameCommand}" 
-                    VerticalAlignment="Center" HorizontalAlignment="Center"/>
-        </Grid>
+                <!-- ID -->
+                <TextBlock Text="{Binding CurrentGame.Id, StringFormat='ID: {0}'}"
+                           FontSize ="20"
+                           Grid.Column ="1"
+                           Grid.Row ="0"
+                           Foreground="Azure"
+                           VerticalAlignment="Center"
+                           HorizontalAlignment="Center"/>
 
+                <!-- Right Button -->
+                <Button Grid.Column="2" Content="►" FontSize="16" Command="{Binding NextGameCommand}" 
+                        VerticalAlignment="Center" HorizontalAlignment="Center"/>
+            </Grid>
 
+            <!-- Thumbnail image -->
+            <Image Source="{Binding CurrentGame.Thumbnail, Converter={StaticResource UrlToImageConverter}}"
+                   Stretch="Uniform"
+                   Margin="20,15,20,15"/>
 
-        <!-- Thumbnail image -->
-        <Image Source="{Binding CurrentGame.Thumbnail, Converter={StaticResource UrlToImageConverter}}"
-               Stretch="Uniform"
-               Grid.Row="0"
-               Grid.Column="1"
-               Margin="20"/>
+            <!-- Go back to overviewButton -->
+            <Button Content="Back to overview" Command="{Binding DataContext.ViewOverviewCommand, RelativeSource={RelativeSource AncestorType=Page}}"
+                    Margin="150,0,150,0" />
+        </StackPanel>
+
 
         <!-- DATASTACKPANEL -->
         <StackPanel Grid.Row="0"
