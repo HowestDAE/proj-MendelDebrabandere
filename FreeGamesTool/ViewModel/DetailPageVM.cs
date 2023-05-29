@@ -57,11 +57,13 @@ namespace FreeGamesTool.ViewModel
         //**********************************
 
         //Repo
+        //private MockGameRepository _repository;
         private GameRepository _repository;
 
         //Constructor
         public DetailPageVM()
         {
+            //_repository = new MockGameRepository();
             _repository = new GameRepository();
 
             // Initialize the commands

@@ -15,7 +15,6 @@ namespace FreeGamesTool.ViewModel
 {
     public class OverviewPageVM : ObservableObject
     {
-        private GameRepository _repository;
         private ObservableCollection<Game> _games;
         private ObservableCollection<Game> _allGames;
         private ObservableCollection<string> _genres;
@@ -61,8 +60,13 @@ namespace FreeGamesTool.ViewModel
         public ICommand ViewGameDetailCommand { get; }
         public ICommand ApplyFiltersCommand { get; }
 
+        //Repo
+        //private MockGameRepository _repository;
+        private GameRepository _repository;
+
         public OverviewPageVM()
         {
+            //_repository = new MockGameRepository();
             _repository = new GameRepository();
             Games = new ObservableCollection<Game>();
             AllGames = new ObservableCollection<Game>();

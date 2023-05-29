@@ -88,6 +88,7 @@
     </ApplicationDefinition>
     <Compile Include="Model\Game.cs" />
     <Compile Include="Repository\GameRepository.cs" />
+    <Compile Include="Repository\MockGameRepository.cs" />
     <Compile Include="ViewModel\DetailPageVM.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="ViewModel\OverviewPageVM.cs" />
@@ -142,6 +143,12 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <EmbeddedResource Include="Resources\FallGuys.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Resources\games.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
